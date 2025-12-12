@@ -1,8 +1,20 @@
 package com.edsuica.concesionaria.logica;
 
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Automovil {
+@Entity
+public class Automovil implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private int id;
+    
+    @Basic
     private String modelo;
     private String marca;
     private String motor;
@@ -12,7 +24,8 @@ public class Automovil {
     public Automovil() {
     }
 
-    public Automovil(String modelo, String marca, String motor, String patente, int canPuertas) {
+    public Automovil(int id, String modelo, String marca, String motor, String patente, int canPuertas) {
+        this.id = id;
         this.modelo = modelo;
         this.marca = marca;
         this.motor = motor;
@@ -20,6 +33,14 @@ public class Automovil {
         this.canPuertas = canPuertas;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getModelo() {
         return modelo;
     }
