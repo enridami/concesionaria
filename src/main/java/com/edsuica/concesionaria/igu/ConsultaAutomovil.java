@@ -1,5 +1,7 @@
 package com.edsuica.concesionaria.igu;
 
+import javax.swing.table.DefaultTableModel;
+
 
 public class ConsultaAutomovil extends javax.swing.JFrame {
 
@@ -21,6 +23,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setText("Consulta de Automóviles");
@@ -112,6 +119,10 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarTabla();
+    }//GEN-LAST:event_formWindowOpened
+
     
 
     
@@ -124,4 +135,18 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+        DefaultTableModel modeloTabla = new DefaultTableModel() {
+            
+            // Para que no se pueda editar la fila o la columna seleccionada
+            
+            @Override
+            public boolean isCellEditable(int row, column){
+                return false;
+            }
+        };
+    
+    
+    }
 }
