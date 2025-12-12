@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.edsuica.concesionaria.persistencia;
 
-/**
- *
- * @author Enrique
- */
+import com.edsuica.concesionaria.logica.Automovil;
+
 public class ControladoraPersistencia {
+
+    AutomovilJpaController autoJpa = new AutomovilJpaController();
     
+    public void agregarAutomovil(Automovil auto) {
+        autoJpa.create(auto);
+    }
 }

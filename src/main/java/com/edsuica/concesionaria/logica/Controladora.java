@@ -1,13 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.edsuica.concesionaria.logica;
 
-/**
- *
- * @author Enrique
- */
+import com.edsuica.concesionaria.persistencia.ControladoraPersistencia;
+
 public class Controladora {
+
+    ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+    
+    public void agregarAutomovil(String modelo, String marca, String motor, String color, String patente, int cantPuertas) {
+        
+        Automovil auto = new Automovil();
+        auto.setModelo(modelo);
+        auto.setMarca(marca);
+        auto.setMotor(motor);
+        auto.setColor(color);
+        auto.setPatente(patente);
+        auto.setCanPuertas(cantPuertas);
+        
+        
+        controlPersis.agregarAutomovil(auto);
+    }
     
 }

@@ -18,19 +18,29 @@ public class Automovil implements Serializable {
     private String modelo;
     private String marca;
     private String motor;
+    private String color;
     private String patente;
     private int canPuertas;
 
     public Automovil() {
     }
 
-    public Automovil(int id, String modelo, String marca, String motor, String patente, int canPuertas) {
+    public Automovil(int id, String modelo, String marca, String motor, String color, String patente, int canPuertas) {
         this.id = id;
         this.modelo = modelo;
         this.marca = marca;
         this.motor = motor;
+        this.color = color;
         this.patente = patente;
         this.canPuertas = canPuertas;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getId() {

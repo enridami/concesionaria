@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -25,12 +26,11 @@ public class AutomovilJpaController implements Serializable {
         this.emf = emf;
     }
     
-    public AutomovilJpaController(){
-        emf = this.emf
-    }
-    
     private EntityManagerFactory emf = null;
-    
+
+    public AutomovilJpaController(){
+        emf = Persistence.createEntityManagerFactory("AutoPU");
+    }
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }

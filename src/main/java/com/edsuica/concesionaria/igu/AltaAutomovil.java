@@ -4,15 +4,17 @@
  */
 package com.edsuica.concesionaria.igu;
 
+import com.edsuica.concesionaria.logica.Controladora;
+
 /**
  *
  * @author Enrique
  */
 public class AltaAutomovil extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AltaAutomovil
-     */
+    Controladora control = new Controladora();
+    
+    
     public AltaAutomovil() {
         initComponents();
     }
