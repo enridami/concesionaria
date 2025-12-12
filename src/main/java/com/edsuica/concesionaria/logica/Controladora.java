@@ -1,6 +1,7 @@
 package com.edsuica.concesionaria.logica;
 
 import com.edsuica.concesionaria.persistencia.ControladoraPersistencia;
+import java.util.List;
 
 public class Controladora {
 
@@ -18,6 +19,10 @@ public class Controladora {
         
         
         controlPersis.agregarAutomovil(auto);
+    }
+
+    public List<Automovil> traerAutos() {
+        return controlPersis.traerAutos();
     }
     
 }

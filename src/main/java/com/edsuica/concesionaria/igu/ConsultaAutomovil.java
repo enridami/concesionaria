@@ -1,10 +1,14 @@
 package com.edsuica.concesionaria.igu;
 
+import com.edsuica.concesionaria.logica.Automovil;
+import com.edsuica.concesionaria.logica.Controladora;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 
 public class ConsultaAutomovil extends javax.swing.JFrame {
 
+    Controladora control = new Controladora();
    
     public ConsultaAutomovil() {
         initComponents();
@@ -18,7 +22,7 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaAutos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -34,7 +38,7 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -45,7 +49,7 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaAutos);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("Eliminar");
@@ -133,20 +137,43 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaAutos;
     // End of variables declaration//GEN-END:variables
 
     private void cargarTabla() {
         DefaultTableModel modeloTabla = new DefaultTableModel() {
             
-            // Para que no se pueda editar la fila o la columna seleccionada
-            
+            // Para que no se pueda editar la fila o la columna seleccionada en la tabla
             @Override
-            public boolean isCellEditable(int row, column){
+            public boolean isCellEditable(int row, int column){
                 return false;
             }
         };
-    
-    
+        
+        
+        // Titulos a las columnas
+        String titulos[] = {"Id", "Modelo", "Marca", "Motor", "Color", "Patente", "Puertas"};
+        
+        modeloTabla.setColumnIdentifiers(titulos);
+        
+        
+        //------ READ ------
+        // Traer autos desde la DB
+        List <Automovil> listaAutomoviles = control.traerAutos();
+        
+        // Setear los datos en la tabla
+        if (listaAutomoviles != null){
+            for (Automovil auto : listaAutomoviles){
+                Object[] objeto = {auto.getId(), auto.getModelo(), auto.getMarca(), auto.getMotor(), auto.getColor(),auto.getPatente(), auto.getCanPuertas()};
+                
+                modeloTabla.addRow(objeto);
+            }
+        }
+        
+        // Asignar el modelo a la tabla creada
+        tablaAutos.setModel(modeloTabla);
     }
 }
+
+
+//22:41
