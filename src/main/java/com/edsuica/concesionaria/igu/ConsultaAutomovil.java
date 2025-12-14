@@ -63,6 +63,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
         btnModificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,9 +159,37 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
             }
         }
         else{
-            mostrarMensaje("La table está vacía, no se puede eliminar", "Error", "Error al eliminar");
+            mostrarMensaje("La tabla está vacía, no se puede eliminar", "Error", "Error al eliminar");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // Verificar que la tabla no este vacia
+        if (tablaAutos.getRowCount() > 0){
+            
+            // Validar la selección de un registro
+            if (tablaAutos.getSelectedRow() != -1){
+                
+                // Obtener la ID del vehiculo que se quiere modificar
+                int idAuto = Integer.parseInt(String.valueOf(tablaAutos.getValueAt(tablaAutos.getSelectedRow(), 0)));
+            
+                ModifAuto modif = new ModifAuto(idAuto);
+                modif.setVisible(true);
+                modif.setLocationRelativeTo(null);
+                this.dispose();
+                
+                
+                //mostrarMensaje("Auto modificado correctamente", "Info", "Modificado Exitoso");
+                //cargarTabla();
+            }
+            else{
+                mostrarMensaje("No se ha seleccionado ningún registro", "Error", "Error al seleccionar");
+            }
+        }
+        else{
+            mostrarMensaje("La tabla está vacía, no se puede modificar", "Error", "Error al modificar");
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     public void mostrarMensaje(String mensaje, String tipo, String titulo){
         JOptionPane optionPane = new JOptionPane(mensaje);
