@@ -138,7 +138,7 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         
         // Verificar que la tabla no este vacia
         if (tablaAutos.getRowCount() > 0){
-           
+            
             // Validar la selección de un registro
             if (tablaAutos.getSelectedRow() != -1){
                 
@@ -146,10 +146,16 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
                 int idAuto = Integer.parseInt(String.valueOf(tablaAutos.getValueAt(tablaAutos.getSelectedRow(), 0)));
             
                 control.borrarAuto(idAuto);
-            
+                mostrarMensaje("Auto borrado correctamente", "Info", "Borrado Exitoso");
                 cargarTabla();
             }
-        }   
+            else{
+                mostrarMensaje("No se ha seleccionado ningún registro", "Error", "Error al seleccionar");
+            }
+        }
+        else{
+            mostrarMensaje("La table está vacía, no se puede eliminar", "Error", "Error al eliminar");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     public void mostrarMensaje(String mensaje, String tipo, String titulo){
