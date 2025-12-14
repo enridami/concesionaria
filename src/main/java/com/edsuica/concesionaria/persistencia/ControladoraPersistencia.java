@@ -1,7 +1,10 @@
 package com.edsuica.concesionaria.persistencia;
 
 import com.edsuica.concesionaria.logica.Automovil;
+import com.edsuica.concesionaria.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ControladoraPersistencia {
 
@@ -14,4 +17,13 @@ public class ControladoraPersistencia {
     public List<Automovil> traerAutos() {
         return autoJpa.findAutomovilEntities();
     }
+
+    public void borrarAuto(int idAuto) {
+        try {
+            autoJpa.destroy(idAuto);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

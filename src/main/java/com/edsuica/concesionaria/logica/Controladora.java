@@ -24,5 +24,9 @@ public class Controladora {
     public List<Automovil> traerAutos() {
         return controlPersis.traerAutos();
     }
+
+    public void borrarAuto(int idAuto) {
+        controlPersis.borrarAuto(idAuto);
+    }
     
 }

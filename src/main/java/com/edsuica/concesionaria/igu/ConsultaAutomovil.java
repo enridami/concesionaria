@@ -3,6 +3,8 @@ package com.edsuica.concesionaria.igu;
 import com.edsuica.concesionaria.logica.Automovil;
 import com.edsuica.concesionaria.logica.Controladora;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -134,8 +136,23 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
+        // Verificar que la tabla no este vacia
+        if (tablaAutos.getRowCount() > 0){
+           
+            // Validar la selección de un registro
+            if (tablaAutos.getSelectedRow() != -1){
+                
+                // Obtener la ID del vehiculo que se quiere eliminar
+                int idAuto = Integer.parseInt(String.valueOf(tablaAutos.getValueAt(tablaAutos.getSelectedRow(), 0)));
+            
+                control.borrarAuto(idAuto);
+            
+                cargarTabla();
+            }
+        }   
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    
     
 
     
